@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>ELLA Store</title>
+    <link rel="stylesheet" href="./css/style.css">
+    
+</head>
+<body>
+    <header class="container-custom-cart">
+        <span class="logo"><h1><a href="home.html">ELLA</a></h1></span>
+        <div class="cart"><a href="giohang.html">
+            <img src="image/cart.jpg" class="cart-icon">
+            <span class="cart-count"></span></a>
+            </a>
+        </div>
+    </header>
+    <nav class ="main-menu container-custom">
+        <ul>
+            <li><a href="lichsumuahang.html">Lịch sử mua hàng</a></li>
+        </ul>
+    </nav>
+
+    <div class="container-custom" style="padding-top: 30px;">
+        <h2>Giỏ Hàng Của Bạn</h2>
+        <table class="cart-table" style="margin-top: 20px;">
+            <thead>
+                <tr><th>Sản phẩm</th><th>Size</th><th>Giá</th><th>Số lượng</th><th>Tổng cộng</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="cart-item-info"><img src="image/giay1.jpg" alt="Giày"><div><strong>Nike Air Force 1</strong></div></div></td>
+                    <td>40</td>
+                    <!-- //-- Đặt mã ID='donGia' vào thẻ chứa giá tiền gốc để JS có thể đọc dữ liệu -->
+                    <td><span id="donGia">2.500.000</span>đ</td>
+                    <!-- //-- Nhúng hai sự kiện onkeyup (nhập phím) và onchange (bấm mũi tên tăng giảm) gọi hàm tính tiền giống Video 4 -->
+                    <td><input type="number" id="soLuong" value="1" min="1" class="quantity-input" onkeyup="tinhTien()" onchange="tinhTien()"></td>
+                    <!-- //-- ID='tongSanPham' là nơi hiển thị kết quả tiền sau khi nhân số lượng -->
+                    <td><span id="tongSanPham">2.500.000</span>đ</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- //-- Khối tổng hợp thanh toán cuối trang dạt góc phải màn hình -->
+        <div class="cart-summary">
+            <div class="summary-box">
+                <div class="summary-row"><span>Thành tiền:</span><span style="font-size: 20px; color: red;"><span id="thanhTien">2500000</span>đ</span></div>
+                <a href="#" class="btn" style="display: block; text-align: center;" onclick="alert('Đặt hàng thành công!')">Thanh toán</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- //-- Đoạn mã xử lý tính toán tiền động bằng JavaScript từ Video 4 của cô giáo Tú Bùi -->
+    <script>
+        //--// Hàm xử lý lấy giá trị theo ID và ép kiểu dữ liệu chuẩn theo phút 11:34 và 12:23 trong video
+        function tinhTien() {
+            //--// Đột nhập giao diện, tìm ID='donGia', lấy chữ bên trong rồi dùng parseFloat đổi sang kiểu số thực để tính toán
+            var gia = parseFloat(document.getElementById("donGia").innerText); 
+            //--// Tìm ID='soLuong', bốc lấy giá trị khách đang điền trong ô nhập (.value)
+            var luong = parseFloat(document.getElementById("soLuong").value);   
+            
+            //--// Xử lý phòng hờ trường hợp người dùng lỡ tay xóa trống trơn ô nhập khiến biến bị rỗng (NaN)
+            if (isNaN(luong) || luong < 0) { 
+                luong = 0; //--// Nếu trống hoặc nhập bậy bạ, ta ép số lượng về bằng 0 để tránh lỗi toán học
+            }
+            
+            //--// Áp dụng công thức tính tiền cơ bản của cô giáo dạy: Thành tiền = Đơn giá x Số lượng
+            var ketQua = gia * luong; 
+            
+            //--// Đẩy con số kết quả vừa tính toán được xuất ngược trả lại vùng hiển thị HTML dựa theo mã ID
+            document.getElementById("tongSanPham").innerText = ketQua;
+            document.getElementById("thanhTien").innerText = ketQua;
+        }
+    </script>
+</body>
+</html>

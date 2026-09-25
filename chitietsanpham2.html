@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>ELLA Store</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    
+      <header class="container-custom-cart">
+        <span class="logo"><h1><a href="home.html">ELLA</a></h1></span>
+        <div class="cart"><a href="giohang.html">
+            <img src="image/cart.jpg" class="cart-icon">
+            <span class="cart-count"></span></a>
+            </a>
+        </div>
+    </header>
+    <div class="container-custom">
+        <!-- //-- Bố cục hai nửa bằng Flexbox (Trang 16) -->
+        <div class="detail-wrapper">
+            <!-- //-- Nửa trái: Vùng ảnh sản phẩm lớn -->
+            <div class="detail-image"><img src="image/Adidas Superstar.jpg" alt="Giày"></div>
+            
+            <!-- //-- Nửa phải: Vùng thông tin tên, giá, size và nút bấm mua hàng -->
+            <div class="detail-info">
+                <h2 class="shoe-name">Nike Air Force 1 All White</h2>
+                <div class="shoe-price">1.900.000đ</div>
+                <p style="color: #666; line-height: 1.6;">Dòng giày quốc dân với thiết kế da trắng cao cấp, bền bỉ và cực kỳ dễ phối đồ.</p>
+                
+                <!-- //-- Khối chọn kích cỡ đặc trưng của đồ án bán giày -->
+                <div class="size-section">
+                    <h4>Chọn Kích Cỡ (Size EU):</h4>
+                    <div class="size-options">
+                        <!-- //-- Nhúng hàm Javascript selectSize vào sự kiện onclick để chuyển đổi ô được chọn -->
+                        <div class="size-box" onclick="selectSize(this)">39</div>
+                        <div class="size-box active" onclick="selectSize(this)">40</div>
+                        <div class="size-box" onclick="selectSize(this)">41</div>
+                        <div class="size-box" onclick="selectSize(this)">42</div>
+                    </div>
+                </div>
+                 <div class="size-section">
+                    <h4>Chọn Kích Cỡ (Size US):</h4>
+                    <div class="size-options">
+                        <!-- //-- Nhúng hàm Javascript selectSize vào sự kiện onclick để chuyển đổi ô được chọn -->
+                        <div class="size-box" onclick="selectSize(this)">7</div>
+                        <div class="size-box active" onclick="selectSize(this)">8</div>
+                        <div class="size-box" onclick="selectSize(this)">9</div>
+                        <div class="size-box" onclick="selectSize(this)">10</div>
+                    </div>
+                </div>
+                <!-- //-- Nút bấm thêm vào giỏ hàng chuyển hướng thẳng sang trang giỏ hàng để xem kết quả tính toán -->
+                <button class="btn" style="width: 250px; text-align: center;" onclick="location.href='GioHang.html'">Thêm vào giỏ hàng</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- //-- Đoạn mã Javascript xử lý hiệu ứng bật tắt khung chọn ô Size giày -->
+    <script>
+        function selectSize(element) {
+            //--// Tìm tất cả các ô size hiện tại, xóa sạch class tô nền đen 'active' của ô cũ đi
+            document.querySelectorAll('.size-box').forEach(box => box.classList.remove('active'));
+            //--// Thêm class 'active' vào đúng ô vừa được người dùng click chuột
+            element.classList.add('active');
+        }
+    </script>
+</body>
+</html>
