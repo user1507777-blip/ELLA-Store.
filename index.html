@@ -16,13 +16,42 @@
             </a>
         </div>
     </header>
+  <!-- MENU 3 GẠCH -->
+<div class="menu-container">
+
+    <button id="nutMenu" class="menu-button">
+        ☰
+    </button>
+
+    <div id="menuDanhMuc" class="menu-danh-muc">
+
+        <a href="index.html">Trang chủ</a>
+
+        <div class="menu-title">
+            Lọai giày
+        </div>
+
+        <a href="nike.html" class="menu-con">
+            Nike
+        </a>
+
+        <a href="Adidas.html" class="menu-con">
+            Adidas
+        </a>
+
+        <a href="dangky.html">
+            Đăng ký / Đăng nhập
+        </a>
+
+    </div>
+
+</div>
     <!-- //-- Khối Thanh menu danh mục sản phẩm chính căn giữa (Trang 18) -->
     <nav class="main-menu container-custom">
         <ul>
-            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="home.html">Trang chủ</a></li>
             <li><a href="nike.html">Nike</a></li>
             <li><a href="Adidas.html">Adidas</a></li>
-            <li><a href="danhmuc.html">Danh mục</a></li>
             <li><a href="Dangnhap.html">Tài khoản</a></li>
             
         </ul>
@@ -64,5 +93,17 @@
                 </a>
         </div>
     </main>
+    <script>
+
+var nutMenu = document.getElementById("nutMenu");
+var menu = document.getElementById("menuDanhMuc");
+
+nutMenu.addEventListener("click", function() {
+
+    menu.classList.toggle("mo");
+
+});
+
+</script>
 </body>
 </html>
