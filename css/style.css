@@ -413,3 +413,86 @@ header {
 .empty-history h1{
     margin-bottom: 15px;
 }
+/* ================================================= */
+/* DANH MỤC Ở TRANG INDEX                            */
+/* ================================================= */
+
+
+/* Khung chứa toàn bộ nút 3 gạch và menu */
+.menu-container {
+    position: relative;      /* Làm mốc để menu con định vị theo khung này */
+    margin-left: 40px;      /* Cách mép trái 40px */
+    margin-top: 20px;       /* Cách phía trên 20px */
+}
+
+
+/* Nút 3 gạch ☰ */
+.menu-button {
+    background: none;       /* Không có màu nền */
+    border: none;           /* Bỏ đường viền mặc định của button */
+    font-size: 32px;        /* Tăng kích thước dấu 3 gạch */
+    cursor: pointer;        /* Đưa chuột vào sẽ hiện hình bàn tay */
+    padding: 0;             /* Bỏ khoảng cách bên trong button */
+}
+
+
+/* Khung danh mục xổ xuống */
+.menu-danh-muc {
+    display: none;          /* Ban đầu ẩn menu đi */
+
+    position: absolute;     /* Cho phép đặt menu ở vị trí mong muốn */
+    top: 45px;              /* Menu nằm bên dưới nút 3 gạch */
+    left: 0;                /* Menu bắt đầu từ bên trái của nút */
+
+    width: 230px;           /* Chiều rộng của khung menu */
+
+    background-color: white; /* Nền menu màu trắng */
+
+    border: 1px solid #ddd; /* Tạo đường viền xung quanh menu */
+
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    /* Tạo bóng xung quanh menu để nhìn giống một hộp xổ xuống */
+
+    z-index: 1000;
+    /* Đưa menu lên phía trên các thành phần khác */
+}
+
+
+/* Khi JavaScript thêm class "mo" thì menu sẽ hiện */
+.menu-danh-muc.mo {
+    display: block;         /* Chuyển menu từ ẩn thành hiện */
+}
+
+
+/* Các liên kết trong menu */
+.menu-danh-muc a {
+    display: block;         /* Mỗi liên kết chiếm một dòng riêng */
+
+    padding: 15px 20px;     /* Tạo khoảng cách bên trong mỗi mục */
+
+    color: black;           /* Màu chữ đen */
+
+    text-decoration: none;  /* Bỏ gạch chân của link */
+
+    font-weight: bold;      /* Chữ in đậm */
+}
+
+
+/* Tiêu đề "Lọai giày" */
+.menu-title {
+    padding: 15px 20px;     /* Tạo khoảng cách xung quanh chữ */
+
+    font-weight: bold;      /* Chữ Loài giày in đậm */
+}
+
+
+/* Các mục con: Nike và Adidas */
+.menu-con {
+    padding-left: 40px !important;   /* Đẩy Nike và Adidas sang bên phải để thể hiện đây là mục con của "Loài giày" */
+}
+
+
+/* Hiệu ứng khi đưa chuột vào các link */
+.menu-danh-muc a:hover {
+    background-color: #f2f2f2;    /* Khi rê chuột vào link thì nền chuyển sang màu xám nhạt */
+}
