@@ -21,34 +21,242 @@
         </ul>
     </nav>
 
-    <div class="container-custom" style="padding-top: 30px;">
-        <h2>Giỏ Hàng Của Bạn</h2>
-        <table class="cart-table" style="margin-top: 20px;">
-            <thead>
-                <tr><th>Sản phẩm</th><th>Size</th><th>Giá</th><th>Số lượng</th><th>Tổng cộng</th></tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><div class="cart-item-info"><img src="image/giay1.jpg" alt="Giày"><div><strong>Nike Air Force 1</strong></div></div></td>
-                    <td>40</td>
-                    <!-- //-- Đặt mã ID='donGia' vào thẻ chứa giá tiền gốc để JS có thể đọc dữ liệu -->
-                    <td><span id="donGia">2.500.000</span>đ</td>
-                    <!-- //-- Nhúng hai sự kiện onkeyup (nhập phím) và onchange (bấm mũi tên tăng giảm) gọi hàm tính tiền giống Video 4 -->
-                    <td><input type="number" id="soLuong" value="1" min="1" class="quantity-input" onkeyup="tinhTien()" onchange="tinhTien()"></td>
-                    <!-- //-- ID='tongSanPham' là nơi hiển thị kết quả tiền sau khi nhân số lượng -->
-                    <td><span id="tongSanPham">2.500.000</span>đ</td>
-                </tr>
-            </tbody>
-        </table>
-        
-        <!-- //-- Khối tổng hợp thanh toán cuối trang dạt góc phải màn hình -->
-        <div class="cart-summary">
-            <div class="summary-box">
-                <div class="summary-row"><span>Thành tiền:</span><span style="font-size: 20px; color: red;"><span id="thanhTien">2500000</span>đ</span></div>
-                <a href="#" class="btn" style="display: block; text-align: center;" onclick="alert('Đặt hàng thành công!')">Thanh toán</a>
+<div class="container-custom" style="padding-top: 30px;">
+
+    <h2>Giỏ Hàng Của Bạn</h2>
+
+    <table class="cart-table" style="margin-top: 20px;">
+
+        <thead>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Size</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Tổng cộng</th>
+                <th>Xóa</th>
+            </tr>
+        </thead>
+
+      
+
+        <!-- JavaScript tự đưa sản phẩm vào đây -->
+        <tbody id="gioHang"></tbody>
+
+    </table>
+
+
+    <!-- TỔNG TIỀN -->
+
+    <div class="cart-summary">
+
+        <div class="summary-box">
+
+            <div class="summary-row">
+
+                <span>Thành tiền:</span>
+
+                <span style="font-size: 20px; color: red;">
+
+                    <span id="thanhTien">0</span>đ
+
+                </span>
+
             </div>
-        </div>
+
+
+            <!-- Sang trang đặt hàng -->
+
+            <a href="dathang.html"
+               class="btn"
+               style="display: block; text-align: center;">
+
+                Thanh toán
+
+            </a>
+
+        </div>  
+
     </div>
+
+</div>
+
+
+<script>
+
+    // ==========================================
+    // LẤY GIỎ HÀNG
+    // ==========================================
+
+    let gioHang =
+        JSON.parse(localStorage.getItem("cart")) || [];
+
+
+    let danhSach =
+        document.getElementById("gioHang");
+
+
+    let tongTien = 0;
+
+
+    // ==========================================
+    // HIỂN THỊ SẢN PHẨM
+    // ==========================================
+
+    gioHang.forEach(function(sanPham, index) {
+
+        // Tính tiền của sản phẩm
+        let tongSanPham =
+            sanPham.price * sanPham.quantity;
+
+
+        // Cộng vào tổng
+        tongTien += tongSanPham;
+
+
+        // Tạo dòng sản phẩm
+        let dong =
+            document.createElement("tr");
+
+
+        dong.innerHTML = `
+
+            <td>
+
+                <div class="cart-item-info">
+
+                    <img
+                        src="${sanPham.image}"
+                        alt="${sanPham.name}"
+                    >
+
+                    <div>
+
+                        <strong>
+                            ${sanPham.name}
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </td>
+
+
+            <td>
+                ${sanPham.size}
+            </td>
+
+
+            <td>
+                ${sanPham.price.toLocaleString("vi-VN")}đ
+            </td>
+
+           
+
+
+            <td>
+
+                <input
+                    type="number"
+                    value="${sanPham.quantity}"
+                    min="1"
+                    class="quantity-input"
+                    onchange="doiSoLuong(${index}, this.value)"
+                >
+
+            </td>
+
+
+            <td>
+                ${tongSanPham.toLocaleString("vi-VN")}đ
+            </td>
+
+            <td>
+
+             <button onclick="xoaSanPham(${index})">
+               Xóa
+             </button>
+
+            </td>
+        `;
+
+           
+
+        danhSach.appendChild(dong);
+
+    });
+
+
+    // ==========================================
+    // HIỂN THỊ TỔNG TIỀN
+    // ==========================================
+
+    document.getElementById("thanhTien").innerText =
+        tongTien.toLocaleString("vi-VN");
+
+
+    // ==========================================
+    // LƯU TỔNG TIỀN
+    // Để trang bill dùng lại
+    // ==========================================
+
+    localStorage.setItem(
+        "cartTotal",
+        tongTien
+    );
+
+
+    // ==========================================
+    // ĐỔI SỐ LƯỢNG
+    // ==========================================
+
+    function doiSoLuong(index, soLuongMoi) {
+
+        soLuongMoi = Number(soLuongMoi);
+
+
+        if (soLuongMoi < 1) {
+
+            soLuongMoi = 1;
+
+        }
+
+
+        // Cập nhật số lượng
+        gioHang[index].quantity =
+            soLuongMoi;
+
+
+        // Lưu lại
+        localStorage.setItem(
+            "cart",
+            JSON.stringify(gioHang)
+        );
+
+
+        // Cập nhật lại trang
+        location.reload();
+
+    }
+function xoaSanPham(index) {
+
+    // Xóa đúng sản phẩm được chọn
+    gioHang.splice(index, 1);
+
+    // Lưu lại giỏ hàng
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(gioHang)
+    );
+
+    // Hiển thị lại giỏ hàng
+    hienThiGioHang();
+
+}
+
+</script>
+
 
     <!-- //-- Đoạn mã xử lý tính toán tiền động bằng JavaScript từ Video 4 của cô giáo Tú Bùi -->
     <script>
