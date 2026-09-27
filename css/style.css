@@ -128,7 +128,46 @@ header {
     height: auto; 
     display: block;                    /*--// Xóa bỏ khoảng hở thừa vài pixel dưới chân ảnh mặc định */
 }
+/*banner-group ở giữa trang home*/
+    /* Khung chứa cả 3 ảnh */
+.banner-group {
+  display: flex;             /* Sắp xếp các phần tử nằm trên 1 hàng ngang */
+  justify-content: center;   /* Căn giữa các ảnh trong khung */
+  gap: 20px;                 /* Khoảng cách giữa các hình ảnh */
+  width: 100%;               /* Chiều rộng khung chứa */
+  max-width: 1200px;         /* Chiều rộng tối đa của khu vực giữa trang */
+  margin: 30px auto;         /* Căn giữa toàn bộ thẻ chứa ra giữa trang web */
+  padding: 0 15px;           /* Lề trong tránh chạm viền màn hình nhỏ */
+  box-sizing: border-box;
+}
 
+/* Mỗi ô chứa ảnh */
+.banner-item {
+  flex: 1;                   /* Chia đều 3 hình bằng nhau */
+  overflow: hidden;          /* Ẩn phần thừa nếu có hiệu ứng phóng to */
+}
+
+/* Định dạng thẻ ảnh */
+.banner-item img {
+  width: 100%;               /* Ảnh co giãn theo độ rộng ô chứa */
+  height: auto;              /* Giữ đúng tỷ lệ khung hình */
+  display: block;            /* Bỏ khoảng trống thừa dưới chân ảnh */
+  object-fit: cover;         /* Giúp ảnh hiển thị đầy đặn */
+  transition: transform 0.3s ease; /* Hiệu ứng mượt khi di chuột vào (tùy chọn) */
+}
+
+/* Hiệu ứng phóng to nhẹ khi di chuột vào (Tùy chọn) */
+.banner-item:hover img {
+  transform: scale(1.03);
+}
+
+/* Tối ưu hóa cho giao diện điện thoại (Responsive) */
+@media (max-width: 768px) {
+  .banner-group {
+    flex-direction: column;  /* Khi xem trên điện thoại, 3 ảnh sẽ xếp chồng dọc */
+    gap: 15px;
+  }
+}
 /* 4. CHIA KHUNG HIỂN THỊ SẢN PHẨM (PRODUCT GRID - Trang 19, 20)*/
 .section-title { 
     text-align: center; 
