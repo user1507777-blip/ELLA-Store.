@@ -23,7 +23,7 @@
             
             <!-- //-- Nửa phải: Vùng thông tin tên, giá, size và nút bấm mua hàng -->
             <div class="detail-info">
-                <h2 class="shoe-name">Nike Air Force 1 All White</h2>
+                <h2 class="shoe-name">Adidas Superstar</h2>
                 <div class="shoe-price">1.900.000đ</div>
                 <p style="color: #666; line-height: 1.6;">Dòng giày quốc dân với thiết kế da trắng cao cấp, bền bỉ và cực kỳ dễ phối đồ.</p>
                 
@@ -49,7 +49,7 @@
                     </div>
                 </div>
                 <!-- //-- Nút bấm thêm vào giỏ hàng chuyển hướng thẳng sang trang giỏ hàng để xem kết quả tính toán -->
-                <button class="btn" style="width: 250px; text-align: center;" onclick="location.href='GioHang.html'">Thêm vào giỏ hàng</button>
+                <button class="btn" style="width: 250px; text-align: center;" onclick="themVaoGio()">Thêm vào giỏ hàng</button>
             </div>
         </div>
     </div>
@@ -62,6 +62,81 @@
             //--// Thêm class 'active' vào đúng ô vừa được người dùng click chuột
             element.classList.add('active');
         }
-    </script>
+    
+    
+
+    // Lưu size đang được chọn
+    let sizeDaChon = "40";
+
+
+    // Hàm chọn size
+    function selectSize(element) {
+
+        // Xóa active của các size
+        let cacSize =
+            document.querySelectorAll(".size-box");
+
+        cacSize.forEach(function(size) {
+
+            size.classList.remove("active");
+
+        });
+
+
+        // Thêm active cho size đang chọn
+        element.classList.add("active");
+
+
+        // Lưu size được chọn
+        sizeDaChon = element.innerText;
+
+    }
+
+
+    // Hàm thêm sản phẩm vào giỏ
+    function themVaoGio() {
+
+        // Tạo thông tin sản phẩm
+        let sanPham = {
+
+            name: "Adidas SuperStart",
+
+            price: 1900000,
+
+            image: "image/Adidas Superstar.jpg",
+
+            size: sizeDaChon,
+
+            quantity: 1
+
+        };
+
+
+        // Lấy giỏ hàng cũ
+        let gioHang =
+            JSON.parse(localStorage.getItem("cart")) || [];
+
+
+        // Thêm sản phẩm mới vào giỏ
+        gioHang.push(sanPham);
+
+
+        // Lưu lại giỏ hàng
+        localStorage.setItem(
+            "cart",
+            JSON.stringify(gioHang)
+        );
+
+
+        // Thông báo
+        alert("Đã thêm sản phẩm vào giỏ hàng!");
+
+
+        // Chuyển sang giỏ hàng
+        window.location.href = "GioHang.html";
+
+    }
+
+</script>
 </body>
 </html>
