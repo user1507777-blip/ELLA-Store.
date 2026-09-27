@@ -503,3 +503,10 @@ header {
     padding: 20px;
     margin-top: 30px;
 }
+.footer a{
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+.footer a:hover{
+text-decoration: underline;    
