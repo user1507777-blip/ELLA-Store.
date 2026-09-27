@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELLA Store - Hóa đơn</title>
+</head>
+<body>
+    
+<!-- ==================== BILL ==================== -->
+
+<div id="bill">
+
+    <h1>ELLA STORE</h1>
+
+    <h2>HÓA ĐƠN ĐẶT HÀNG</h2>
+
+    <p>
+        <strong>Mã đơn hàng:</strong>
+        <span id="billMaDon"></span>
+    </p>
+
+    <p>
+        <strong>Ngày đặt:</strong>
+        <span id="billNgayDat"></span>
+    </p>
+
+    <hr>
+
+    <!-- THÔNG TIN KHÁCH HÀNG -->
+    <h3>Thông tin khách hàng</h3>
+
+    <p>
+        <strong>Họ tên:</strong>
+        <span id="billHoTen"></span>
+    </p>
+
+    <p>
+        <strong>Số điện thoại:</strong>
+        <span id="billSoDienThoai"></span>
+    </p>
+
+    <p>
+        <strong>Địa chỉ:</strong>
+        <span id="billDiaChi"></span>
+    </p>
+
+
+    <!-- DANH SÁCH SẢN PHẨM -->
+    <h3>Sản phẩm</h3>
+
+    <table class="bill-table">
+
+        <thead>
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Đơn giá</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+
+        <tbody id="billSanPham">
+            <!-- JavaScript sẽ đưa sản phẩm vào đây -->
+        </tbody>
+
+    </table>
+
+
+    <!-- TỔNG TIỀN -->
+    <div class="bill-total">
+
+        <strong>TỔNG TIỀN:</strong>
+
+        <span id="billTongTien"></span> VNĐ
+
+    </div>
+
+
+    <!-- PHƯƠNG THỨC THANH TOÁN -->
+    <p>
+        <strong>Phương thức thanh toán:</strong>
+        <span id="billThanhToan"></span>
+    </p>
+
+
+    <!-- NÚT IN -->
+    <button onclick="inBill()">
+        IN BILL
+    </button>
+
+</div>
+
+
+<style>
+
+    /* Khung bill */
+    #bill {
+        width: 800px;
+        margin: 40px auto;
+        padding: 30px;
+        background: white;
+        border: 1px solid #333;
+        box-sizing: border-box;
+    }
+
+
+    /* Tiêu đề */
+    #bill h1,
+    #bill h2 {
+        text-align: center;
+    }
+
+
+    /* Bảng sản phẩm */
+    #bill-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+
+    #bill-table th,
+    #bill-table td {
+        border: 1px solid #333;
+        padding: 10px;
+        text-align: center;
+    }
+
+
+    /* Tổng tiền */
+    #bill-total {
+        text-align: right;
+        font-size: 20px;
+        margin-top: 25px;
+    }
+
+
+    /* Nút in */
+    #bill button {
+        display: block;
+        margin: 25px auto 0;
+        padding: 12px 30px;
+        background: black;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+
+    /* Khi in */
+    @media print {
+
+        body * {
+            visibility: hidden;
+        }
+
+        #bill,
+        #bill * {
+            visibility: visible;
+        }
+
+        #bill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            margin: 0;
+            border: none;
+        }
+
+        #bill button {
+            display: none;
+        }
+    }
+
+</style>
+
+
+<script>
+
+    // ==============================
+    // TẠO BILL
+    // ==============================
+
+    function taoBill() {
+
+        // Tạo mã đơn hàng
+        let maDonHang = "ELLA" + Date.now();
+
+        // Lấy ngày hiện tại
+        let ngayDat = new Date().toLocaleDateString("vi-VN");
+
+
+        // ==============================
+        // THÔNG TIN KHÁCH HÀNG
+        // ==============================
+
+        /*
+            Những id này phải trùng với
+            id trong form của người làm phần
+            nhập thông tin.
+        */
+
+        let hoTen =
+            document.getElementById("hoTen").value;
+
+        let soDienThoai =
+            document.getElementById("soDienThoai").value;
+
+        let diaChi =
+            document.getElementById("diaChi").value;
+
+        let thanhToan =
+            document.getElementById("thanhToan").value;
+
+
+        // Đưa thông tin vào bill
+
+        document.getElementById("billMaDon").innerText =
+            maDonHang;
+
+        document.getElementById("billNgayDat").innerText =
+            ngayDat;
+
+        document.getElementById("billHoTen").innerText =
+            hoTen;
+
+        document.getElementById("billSoDienThoai").innerText =
+            soDienThoai;
+
+        document.getElementById("billDiaChi").innerText =
+            diaChi;
+
+        document.getElementById("billThanhToan").innerText =
+            thanhToan;
+
+
+        // ==============================
+        // LẤY SẢN PHẨM TỪ GIỎ HÀNG
+        // ==============================
+
+        /*
+            Ở đây lấy dữ liệu giỏ hàng
+            đã có sẵn.
+
+            Không tính lại tổng tiền.
+        */
+
+        let gioHang =
+            JSON.parse(localStorage.getItem("cart")) || [];
+
+
+        let billSanPham =
+            document.getElementById("billSanPham");
+
+
+        // Xóa dữ liệu cũ
+        billSanPham.innerHTML = "";
+
+
+        // Hiển thị từng sản phẩm
+        gioHang.forEach(function(sanPham) {
+
+            let dong =
+                document.createElement("tr");
+
+
+            let thanhTien =
+                sanPham.price * sanPham.quantity;
+
+
+            dong.innerHTML = `
+
+                <td>${sanPham.name}</td>
+
+                <td>${sanPham.quantity}</td>
+
+                <td>
+                    ${sanPham.price.toLocaleString("vi-VN")}
+                </td>
+
+                <td>
+                    ${thanhTien.toLocaleString("vi-VN")}
+                </td>
+
+            `;
+
+
+            billSanPham.appendChild(dong);
+
+        });
+
+
+        // ==============================
+        // LẤY TỔNG TIỀN ĐÃ CÓ
+        // ==============================
+
+        /*
+            Nếu giỏ hàng của bạn đã lưu tổng tiền
+            vào localStorage với tên "cartTotal"
+            thì lấy trực tiếp ở đây.
+        */
+
+        let tongTien =
+            localStorage.getItem("cartTotal");
+
+
+        if (tongTien) {
+
+            document.getElementById("billTongTien").innerText =
+                Number(tongTien).toLocaleString("vi-VN");
+
+        }
+
+    }
+
+
+    // ==============================
+    // IN BILL
+    // ==============================
+
+    function inBill() {
+
+        window.print();
+
+    }
+
+</script>
+
+
+</body>
+</html>
