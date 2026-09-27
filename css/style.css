@@ -131,7 +131,8 @@ header {
 /*banner-group ở giữa trang home*/
     /* Khung chứa cả 3 ảnh */
 .banner-group {
-  display: flex;             /* Sắp xếp các phần tử nằm trên 1 hàng ngang */
+  display: flex !important;/* Sắp xếp các phần tử nằm trên 1 hàng ngang */
+  flex-direction: row !important;
   justify-content: center;   /* Căn giữa các ảnh trong khung */
   gap: 20px;                 /* Khoảng cách giữa các hình ảnh */
   width: 100%;               /* Chiều rộng khung chứa */
