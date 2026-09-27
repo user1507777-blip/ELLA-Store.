@@ -120,7 +120,8 @@ header {
 }
 
 .banner-image { 
-    flex: 1;                           /*--// Ép phần chứa hình ảnh chiếm đúng 50% chiều rộng bên phải */
+    flex: 1;/*--// Ép phần chứa hình ảnh chiếm đúng 50% chiều rộng bên phải */
+    
 }
 
 .banner-image img { 
@@ -132,8 +133,8 @@ header {
     /* Khung chứa cả 3 ảnh */
 .banner-group {
   display: flex !important;/* Sắp xếp các phần tử nằm trên 1 hàng ngang */
-  flex-direction: row !important;
-/* Định dạng thẻ ảnh */
+  flex-direction: row !important;/* Định dạng thẻ ảnh */
+  flex-wrap: nowrap !important; /* KHÔNG CHO PHÉP RỚT DÒNG */
   justify-content: center;   /* Căn giữa các ảnh trong khung */
   gap: 20px;                 /* Khoảng cách giữa các hình ảnh */
   width: 100%;               /* Chiều rộng khung chứa */
@@ -146,11 +147,13 @@ header {
 /* Mỗi ô chứa ảnh */
 .banner-i {
   flex: 1;                   /* Chia đều 3 hình bằng nhau */
+ min-width: 0;
   overflow: hidden;          /* Ẩn phần thừa nếu có hiệu ứng phóng to */
 }
 
 .banner-i img {
   width: 100%;               /* Ảnh co giãn theo độ rộng ô chứa */
+  max-width:100%
   height: auto;              /* Giữ đúng tỷ lệ khung hình */
   display: block;            /* Bỏ khoảng trống thừa dưới chân ảnh */
   transition: transform 0.3s ease; /* Hiệu ứng mượt khi di chuột vào (tùy chọn) */
