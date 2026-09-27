@@ -496,7 +496,7 @@ header {
 .menu-danh-muc a:hover {
     background-color: #f2f2f2;    /* Khi rê chuột vào link thì nền chuyển sang màu xám nhạt */
 }
-footer {
+.footer {
     background-color: #222;
     color: #fff;
     text-align: center;
