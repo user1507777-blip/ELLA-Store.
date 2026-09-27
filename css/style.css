@@ -133,6 +133,7 @@ header {
 .banner-group {
   display: flex !important;/* Sắp xếp các phần tử nằm trên 1 hàng ngang */
   flex-direction: row !important;
+/* Định dạng thẻ ảnh */
   justify-content: center;   /* Căn giữa các ảnh trong khung */
   gap: 20px;                 /* Khoảng cách giữa các hình ảnh */
   width: 100%;               /* Chiều rộng khung chứa */
@@ -148,12 +149,10 @@ header {
   overflow: hidden;          /* Ẩn phần thừa nếu có hiệu ứng phóng to */
 }
 
-/* Định dạng thẻ ảnh */
 .banner-i img {
   width: 100%;               /* Ảnh co giãn theo độ rộng ô chứa */
   height: auto;              /* Giữ đúng tỷ lệ khung hình */
   display: block;            /* Bỏ khoảng trống thừa dưới chân ảnh */
-  object-fit: cover;         /* Giúp ảnh hiển thị đầy đặn */
   transition: transform 0.3s ease; /* Hiệu ứng mượt khi di chuột vào (tùy chọn) */
 }
 
