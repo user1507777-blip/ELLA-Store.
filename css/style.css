@@ -8,7 +8,7 @@
 
 body { 
     color: #443a3a;               /*Đổi màu chữ toàn trang thành màu xám đậm cho tinh tế */
-    background-color: #fafaf9;    /*Đặt nền của trang web là màu trắng */
+    background-color: #fff9f1;    /*Đặt nền của trang web là màu trắng */
 }
 
 .container-custom {
@@ -183,7 +183,7 @@ header {
 
 .product-grid { 
     display: grid;                     /*--// Bật tính năng Grid để chia màn hình dưới dạng ô cờ vuông */
-    grid-template-columns: repeat(5, 1fr); /*--// Định nghĩa: Tự động chia đều không gian thành đúng 5 cột bằng nhau */
+    grid-template-columns: repeat(auto-fit,minmax(200px, 1fr)); /*--// Định nghĩa: Tự động chia đều không gian thành đúng 5 cột bằng nhau */
     gap: 20px;                         /*--// Khoảng cách trống giữa các ô sản phẩm là 20px */
     margin-bottom: 50px; 
 }
