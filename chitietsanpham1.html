@@ -6,136 +6,217 @@
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-      <header class="container-custom-cart">
-        <span class="logo"><h1><a href="index.html">ELLA</a></h1></span>
-        <div class="cart"><a href="giohang.html">
-            <img src="image/cart.jpg" class="cart-icon">
-            <span class="cart-count"></span></a>
+    <!-- HEADER -->
+    <header class="container-custom-cart">
+        <span class="logo">
+            <h1>
+                <a href="index.html">ELLA</a>
+            </h1>
+        </span>
+        <div class="cart">
+            <a href="giohang.html">
+                <img src="image/cart.jpg" class="cart-icon">
+                <span class="cart-count"></span>
             </a>
         </div>
     </header>
+    <!-- CHI TIẾT SẢN PHẨM -->
     <div class="container-custom">
-        <!-- //-- Bố cục hai nửa bằng Flexbox (Trang 16) -->
         <div class="detail-wrapper">
-            <!-- //-- Nửa trái: Vùng ảnh sản phẩm lớn -->
-            <div class="detail-image"><img src="image/giay1.jpg" alt="Giày"></div>
-            
-            <!-- //-- Nửa phải: Vùng thông tin tên, giá, size và nút bấm mua hàng -->
+            <!-- ẢNH -->
+            <div class="detail-image">
+                <img src="image/giay1.jpg" alt="Giày">
+            </div>
+            <!-- THÔNG TIN -->
             <div class="detail-info">
-                <h2 class="shoe-name">Nike Air Force 1 All White</h2>
-                <div class="shoe-price">2.500.000đ</div>
-                <p style="color: #666; line-height: 1.6;">Dòng giày quốc dân với thiết kế da trắng cao cấp, bền bỉ và cực kỳ dễ phối đồ.</p>
-                
-                <!-- //-- Khối chọn kích cỡ đặc trưng của đồ án bán giày -->
+                <h2 class="shoe-name">
+                    Nike Air Force 1 All White
+                </h2>
+                <div class="shoe-price">
+                    2.500.000đ
+                </div>
+                <p style="color: #666; line-height: 1.6;">
+                    Dòng giày quốc dân với thiết kế da trắng cao cấp,
+                    bền bỉ và cực kỳ dễ phối đồ.
+                </p>
+                <!-- SIZE EU -->
                 <div class="size-section">
                     <h4>Chọn Kích Cỡ (Size EU):</h4>
                     <div class="size-options">
-                        <!-- //-- Nhúng hàm Javascript selectSize vào sự kiện onclick để chuyển đổi ô được chọn -->
-                        <div class="size-box" onclick="selectSize(this)">39</div>
-                        <div class="size-box active" onclick="selectSize(this)">40</div>
-                        <div class="size-box" onclick="selectSize(this)">41</div>
-                        <div class="size-box" onclick="selectSize(this)">42</div>
+                        <div class="size-box"
+                             onclick="selectSize(this)">
+                            39
+                        </div>
+                        <div class="size-box active"
+                             onclick="selectSize(this)">
+                            40
+                        </div>
+                        <div class="size-box"
+                             onclick="selectSize(this)">
+                            41
+                        </div>
+                        <div class="size-box"
+                             onclick="selectSize(this)">
+                            42
+                        </div>
                     </div>
                 </div>
-                 <div class="size-section">
+                <!-- SIZE US -->
+                <div class="size-section">
                     <h4>Chọn Kích Cỡ (Size US):</h4>
                     <div class="size-options">
-                        <!-- //-- Nhúng hàm Javascript selectSize vào sự kiện onclick để chuyển đổi ô được chọn -->
-                        <div class="size-box" onclick="selectSize(this)">7</div>
-                        <div class="size-box active" onclick="selectSize(this)">8</div>
-                        <div class="size-box" onclick="selectSize(this)">9</div>
-                        <div class="size-box" onclick="selectSize(this)">10</div>
+                        <div class="size-box"
+                             onclick="selectSize(this)">
+                            7
+                        </div>
+                        <div class="size-box active"
+                             onclick="selectSize(this)">
+                            8
+                        </div>
+                        <div class="size-box"
+                             onclick="selectSize(this)">
+                            9
+                        </div>
+                        <div class="size-box"
+                             onclick="selectSize(this)">
+                            10
+                        </div>
                     </div>
                 </div>
-                <!-- //-- Nút bấm thêm vào giỏ hàng chuyển hướng thẳng sang trang giỏ hàng để xem kết quả tính toán -->
-                <button class="btn" style="width: 250px; text-align: center;" onclick="themVaoGio()">Thêm vào giỏ hàng</button>
+                <!-- NÚT THÊM GIỎ -->
+                <button class="btn"
+                        style="width: 250px; text-align: center;"
+                        onclick="themVaoGio()">
+                    Thêm vào giỏ hàng
+                </button>
             </div>
         </div>
     </div>
-
-    <!-- //-- Đoạn mã Javascript xử lý hiệu ứng bật tắt khung chọn ô Size giày -->
     <script>
-        function selectSize(element) {
-            //--// Tìm tất cả các ô size hiện tại, xóa sạch class tô nền đen 'active' của ô cũ đi
-            document.querySelectorAll('.size-box').forEach(box => box.classList.remove('active'));
-            //--// Thêm class 'active' vào đúng ô vừa được người dùng click chuột
-            element.classList.add('active');
+        // ==========================================
+        // LẤY ID SẢN PHẨM TỪ ĐƯỜNG LINK
+        // ==========================================
+        let thamSo =
+            new URLSearchParams(window.location.search);
+        let idSanPham =
+            thamSo.get("id");
+        // ==========================================
+        // DANH SÁCH SẢN PHẨM
+        // ==========================================
+        let danhSachSanPham = [
+            {
+                id: "1",
+                name: "Nike Air Force 1 All White",
+                price: 2500000,
+                image: "image/giay1.jpg",
+                description:
+                   "Dòng giày quốc dân với thiết kế da trắng cao cấp, bền bỉ và cực kỳ dễ phối đồ."
+            }
+             {
+                id: "2",
+                name: "Adidas Superstar",
+                price: 1900000,
+                image: "image/Adidas Superstar.jpg",
+                description:
+                   "Dòng giày quốc dân với thiết kế da trắng cao cấp, bền bỉ và cực kỳ dễ phối đồ."
+            }
+         {
+                id: "3",
+                name: "Adida Grand Court 2.0k",
+                price: 1350000,
+                image: "image/adida1.webp",
+                description:
+                   "Dòng giày quốc dân với thiết kế da trắng cao cấp, bền bỉ và cực kỳ dễ phối đồ."
+            }
+         {
+                id: "4",
+                name: "Adidas UltraBoost",
+                price:4500000,
+                image: "image/adidas2.jpg",
+                description:
+                   "Dòng giày quốc dân với thiết kế da trắng cao cấp, bền bỉ và cực kỳ dễ phối đồ."
+            }
+         {
+                id: "5",
+                name: "Adidas Handball Spezial",
+                price: 2800000,
+                image: "image/adidas3.avif",
+                description:
+                   "Dòng giày quốc dân với thiết kế da trắng cao cấp, bền bỉ và cực kỳ dễ phối đồ."
+            }
+        ];
+        // ==========================================
+        // TÌM SẢN PHẨM
+        // ==========================================
+        let sanPhamDangXem =
+            danhSachSanPham.find(function(sanPham) {
+                return sanPham.id === idSanPham;
+            });
+        // ==========================================
+        // HIỂN THỊ SẢN PHẨM
+        // ==========================================
+
+        if (sanPhamDangXem) {
+
+            document.querySelector(".detail-image img").src =
+                sanPhamDangXem.image;
+
+            document.querySelector(".shoe-name").innerText =
+                sanPhamDangXem.name;
+
+            document.querySelector(".shoe-price").innerText =
+                sanPhamDangXem.price.toLocaleString("vi-VN") + "đ";
+
+            document.querySelector(".detail-info p").innerText =
+                sanPhamDangXem.description;
+
         }
-        
+        // ==========================================
+        // CHỌN SIZE
+        // ==========================================
+        let sizeDaChon = "40"
+        function selectSize(element) {
+            let cacSize =
+                document.querySelectorAll(".size-box");
+            cacSize.forEach(function(size) {
+                size.classList.remove("active");
+            });
+            element.classList.add("active");
+            sizeDaChon =
+                element.innerText;
+        }
+        // ==========================================
+        // THÊM VÀO GIỎ HÀNG
+        // ==========================================
 
-    // Lưu size đang được chọn
-    let sizeDaChon = "40";
+        function themVaoGio() {
 
+            let sanPham = {
 
-    // Hàm chọn size
-    function selectSize(element) {
+                name: sanPhamDangXem.name,
 
-        // Xóa active của các size
-        let cacSize =
-            document.querySelectorAll(".size-box");
+                price: sanPhamDangXem.price,
 
-        cacSize.forEach(function(size) {
+                image: sanPhamDangXem.image,
 
-            size.classList.remove("active");
+                size: sizeDaChon,
 
-        });
+                quantity: 1
 
-
-        // Thêm active cho size đang chọn
-        element.classList.add("active");
-
-
-        // Lưu size được chọn
-        sizeDaChon = element.innerText;
-
-    }
-
-
-    // Hàm thêm sản phẩm vào giỏ
-    function themVaoGio() {
-
-        // Tạo thông tin sản phẩm
-        let sanPham = {
-
-            name: "Nike Air Force 1 All White",
-
-            price: 2500000,
-
-            image: "image/giay1.jpg",
-
-            size: sizeDaChon,
-
-            quantity: 1
-
-        };
-
-
-        // Lấy giỏ hàng cũ
-        let gioHang =
-            JSON.parse(localStorage.getItem("cart")) || [];
-
-
-        // Thêm sản phẩm mới vào giỏ
-        gioHang.push(sanPham);
-
-
-        // Lưu lại giỏ hàng
-        localStorage.setItem(
-            "cart",
-            JSON.stringify(gioHang)
-        );
-
-
-        // Thông báo
-        alert("Đã thêm sản phẩm vào giỏ hàng!");
-
-
-        // Chuyển sang giỏ hàng
-        window.location.href = "GioHang.html";
-
-    }
-
-
+            };
+            let gioHang =
+                JSON.parse(
+                    localStorage.getItem("cart")
+                ) || [];
+            gioHang.push(sanPham);
+            localStorage.setItem(
+                "cart",
+                JSON.stringify(gioHang)
+            );
+            alert("Đã thêm sản phẩm vào giỏ hàng!");
+            window.location.href =
+                "GioHang.html";
+        }
     </script>
 </body>
 </html>
