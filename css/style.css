@@ -553,3 +553,78 @@ header {
 .footer a:hover{
 text-decoration: underline;    
 }
+
+/*Ghi chú đơn hàng*/
+.order-note-section {
+    margin-top: 20px 0;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.order-note-section h3 {
+    margin-top: 0px;
+    font-size: 18px;
+    color: #333;
+}
+.order-note-section label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+order-note-section textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-fanmily: inherit;
+    resize: vertical;
+}
+
+/*Bảng lịch sử*/
+.history-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+    font-family: inherit;
+}
+.history-title {
+    font-size: 24px
+    margin-bottom: 20px;
+    color: #333;
+}
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+}
+.history-table th, .history-table td {
+    border: 1px solid #eee;
+    padding: 12px 15px;
+    text-align: left;
+}
+.history-table th {
+    background-color: #f9f9f9;
+    font-weight: bold;
+}
+.status-completed {
+    color: #2e7d32;
+    font-weight: 500;
+}
+.status-pending {
+    color: #ed6c02;
+    font-weight: 500;
+}
+.btn-detail {
+    display: inline-block;
+    padding: 6px 14px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 13px;
+}
+.btn-detail:hover {
+    background-color: #555;
+}
