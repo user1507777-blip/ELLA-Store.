@@ -582,49 +582,145 @@ order-note-section textarea {
     resize: vertical;
 }
 
-/*Bảng lịch sử*/
-.history-container {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding: 0 20px;
-    font-family: inherit;
+/*Trang lịch sử mua hàng*/
+.order-detail-container {
+    width: 80%;
+    max-width: 900px;
+    margin: 30px auto;
 }
-.history-title {
-    font-size: 24px
-    margin-bottom: 20px;
+
+.order-detail-container h2 {
+    font-size: 20px;
     color: #333;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
-.history-table {
+
+.order-table {
     width: 100%;
     border-collapse: collapse;
-    background: #fff;
+    margin-top: 10px;
 }
-.history-table th, .history-table td {
-    border: 1px solid #eee;
-    padding: 12px 15px;
+
+.order-table th, 
+.order-table td {
+    border: 1px solid #ccc;
+    padding: 12px 10px;
     text-align: left;
+    font-size: 14px;
 }
-.history-table th {
-    background-color: #f9f9f9;
+
+.order-table th {
+    background: #eee;
+    font-weight: bold;
+    color: #333;
+}
+
+.order-table tr:nth-child(even) {
+    background-color: #fdfdfd;
+}
+
+.order-table button {
+    padding: 6px 12px;
+    background: #333;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: background 0.2s ease;
+}
+
+.order-table button:hover {
+    background: #555;
+}
+
+/*trang chi tiết mua hàng*/
+.order-detail-container {
+    width: 80%;
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+.order-detail-container h2, 
+.order-detail-container h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.order-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 15px 20px;
+    margin-bottom: 25px;
+    border-radius: 5px;
+}
+
+.order-box h3 {
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 16px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+}
+
+.order-box p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #444;
+}
+
+.status-badge {
     font-weight: bold;
 }
-.status-completed {
-    color: #2e7d32;
-    font-weight: 500;
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
 }
-.status-pending {
-    color: #ed6c02;
-    font-weight: 500;
+
+.order-table th, 
+.order-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    font-size: 14px;
 }
-.btn-detail {
-    display: inline-block;
-    padding: 6px 14px;
-    background-color: #333;
-    color: #fff;
+
+.order-table th {
+    background: #eee;
+    font-weight: bold;
+}
+
+.summary-box {
+    margin-top: 20px;
+    text-align: right;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.summary-box p {
+    margin: 5px 0;
+}
+
+.total-price {
+    font-size: 18px;
+    font-weight: bold;
+    color: #d9534f;
+}
+
+.back-link {
+    margin-top: 25px;
+}
+
+.back-link a {
+    color: #333;
     text-decoration: none;
-    border-radius: 4px;
-    font-size: 13px;
+    font-size: 14px;
+    font-weight: 500;
 }
-.btn-detail:hover {
-    background-color: #555;
+
+.back-link a:hover {
+    text-decoration: underline;
 }
