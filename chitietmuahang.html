@@ -3,65 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi Tiết Đơn Hàng - ELLA Store</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <title>Chi Tiết Mua Hàng - ELLA Store</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="container-custom-cart">
-        <span class="logo"><h1><a href="Adidas.html">ELLA</a></h1></span>
-        <div class="cart">
-            <a href="giohang.html">
-            <img src="image/cart.jpg" class="cart-icon" alt="giỏ hàng">
-            </a>
+
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="Adidas.html">ELLA <span>STORE</span></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Adidas.html">Trang Chủ</a></li>
+                    <li><a href="Adidas.html">Adidas</a></li>
+                    <li><a href="asics.html">Asics</a></li>
+                    <li><a href="biti.html">Bitis</a></li>
+                </ul>
+            </nav>
+            <div class="user-action">
+                <a href="giohang.html">Giỏ Hàng</a>
+                <a href="lichsumuahang.html">Lịch Sử Mua Hàng</a>
+            </div>
         </div>
     </header>
-    <!--Khối nội dung chính của trang-->
-    <main class="container-custom">
-        <h2>Chi Tiết Đơn Hàng</h2>
-        <!--Thông tin người nhận-->
-        <section class="order-info">
-            <h3>Thông Tin Người Nhận:</h3>
-            <p><strong>Người nhận:</strong> Nguyễn Văn A</p>
-            <p><strong>Số điện thoại:</strong> 0123456789</p>
-            <p><strong>Địa chỉ:</strong> 123 Đường ABC, Quận 1, TP. HCM</p>
-            <p><strong>Phương thức thanh toán:</strong> Thanh toán khi nhận hàng (COD)</p>
-            <p><strong>Ghi chú đơn hàng:</strong></p>
-            <input
-                type="text"
-                value="Nhắn nhủ với người bán..."
-                readonly
-                style="width: 100%; max-width: 450px; padding: 8px 12px; margin-top: 5px; font-family: inherit; font-size: 14px; color: #333; background-color: #f9f9f9; border: 1px solid #ddd; border-radius: 4px; outline: none;" 
-        </section>
-        <!--Danh sách sản phẩm trong đơn-->
-        <section class="order-items">
-            <h3> Sản phẩm đã đặt</h3>
-            <table class="cart-table">
-                <thead>
-                    <tr>
-                        <td>Hình ảnh</td>
-                        <td>Tên sản phẩm</td>
-                        <td>Giá</td>
-                        <td>Số lượng</td>
-                        <td>Thành tiền</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><img src="image/Adidas Superstar.jpg" width="60" alt="Adidas Superstar"></td>
-                        <td>Adidas Superstar</td>
-                        <td>2.100.000</td>
-                        <td>1</td>
-                        <td>2.100.000đ</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
 
-        <div class="order-sumary">
-            <p><strong>Tổng tiền:</strong> 2.100.000đ</p>
-            <p><strong>Phí vận chuyển:</strong> 30.000đ</p>
-            <p><strong>Thành tiền:</strong> 2.130.000đ</p>
+    <main class="order-detail-container">
+        <h2 id="order-title">CHI TIẾT ĐƠN HÀNG</h2>
+
+        <div class="order-box">
+            <h3>Thông Tin Khách Hàng</h3>
+            <p><strong>Người nhận:</strong> <span id="ten-khach">--</span></p>
+            <p><strong>Số điện thoại:</strong> <span id="sdt-khach">--</span></p>
+            <p><strong>Địa chỉ:</strong> <span id="diachi-khach">--</span></p>
+            <p><strong>Trạng thái:</strong> <span class="status-badge" id="trang-thai">--</span></p>
+        </div>
+
+        <h3>Sản Phẩm Đã Đặt</h3>
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>Sản phẩm</th>
+                    <th>Đơn giá</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody id="bang-san-pham">
+            </tbody>
+        </table>
+
+        <div class="summary-box">
+            <p>Tiền hàng: <span id="tien-hang">0đ</span></p>
+            <p>Phí vận chuyển: <span>30.000đ</span></p>
+            <p class="total-price">Tổng thanh toán: <span id="tong-tien">0đ</span></p>
+        </div>
+
+        <div class="back-link">
+            <a href="lichsumuahang.html">&larr; Quay lại Lịch sử mua hàng</a>
         </div>
     </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 ELLA Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            var maDon = localStorage.getItem('maDonDangXem') || 'ELLA1001';
+            var donMoi = JSON.parse(localStorage.getItem('donHangCuaKhach'));
+
+            // Xử lý dữ liệu hiển thị theo mã đơn
+            if (donMoi && (maDon === donMoi.maDon)) {
+                hienThiChiTiet(donMoi.maDon, donMoi.ten, donMoi.sdt, donMoi.diachi, donMoi.trangThai || "Đã giao", donMoi.tenGiay, donMoi.gia);
+            } else if (maDon === 'ELLA1002') {
+                hienThiChiTiet('ELLA1002', 'Nguyễn Văn B', '0988 765 432', '456 Lê Đại Hành, Quận 11, TP.HCM', 'Đang vận chuyển', 'Giày Asics Gel-Kayano', 1520000);
+            } else {
+                // Mặc định đơn ELLA1001
+                hienThiChiTiet('ELLA1001', 'Khách nhi', '0907 754 094', '141 Lũy Bán Bích, Q.Tân Phú, TP.HCM', 'Đã giao', 'Giày Adidas Superstar', 2100000);
+            }
+        };
+
+        function hienThiChiTiet(ma, ten, sdt, diachi, trangthai, tengiay, gia) {
+            document.getElementById('order-title').innerText = "CHI TIẾT ĐƠN HÀNG #" + ma;
+            document.getElementById('ten-khach').innerText = ten;
+            document.getElementById('sdt-khach').innerText = sdt;
+            document.getElementById('diachi-khach').innerText = diachi;
+            document.getElementById('trang-thai').innerText = trangthai;
+
+            var tienHang = parseInt(gia);
+            var tongTien = tienHang + 30000;
+
+            document.getElementById('bang-san-pham').innerHTML = `
+                <tr>
+                    <td>${tengiay}</td>
+                    <td>${tienHang.toLocaleString('vi-VN')}đ</td>
+                    <td>1</td>
+                    <td>${tienHang.toLocaleString('vi-VN')}đ</td>
+                </tr>
+            `;
+            document.getElementById('tien-hang').innerText = tienHang.toLocaleString('vi-VN') + 'đ';
+            document.getElementById('tong-tien').innerText = tongTien.toLocaleString('vi-VN') + 'đ';
+        }
+    </script>
 </body>
 </html>
