@@ -3,84 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELLA - Lịch sử mua hàng</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <title>Lịch Sử Mua Hàng - ELLA Store</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <header class="container-custom-cart">
-         <div class="logo">
-            <h1><a href="Adidas.html" style="text-decoration: none; color: inherit;">ELLA</a></h1>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <a href="Adidas.html">ELLA <span>STORE</span></a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="Adidas.html">Trang Chủ</a></li>
+                    <li><a href="Adidas.html">Adidas</a></li>
+                    <li><a href="asics.html">Asics</a></li>
+                    <li><a href="biti.html">Bitis</a></li>
+                </ul>
+            </nav>
+            <div class="user-action">
+                <a href="giohang.html">Giỏ Hàng</a>
+                <a href="lichsumuahang.html">Lịch Sử Mua Hàng</a>
+            </div>
         </div>
-        <nav>
-            <a href="Adidas.html">Trang chủ</a>
-            <a href="giohang.html">Giỏ hàng</a>
-            <a href="lichsumuahang.html">Lịch sử mua hàng</a>
-            <a href="dangnhap.html">Đăng nhập</a>
-        </nav>
     </header>
 
-<!--Nội dung chính-->
-<div class="history-container">
-    <h2 class="history-title">Lịch Sử Mua Hàng</h2>
+    <main class="order-detail-container">
+        <h2>LỊCH SỬ MUA HÀNG</h2>
 
-    <!--Tab trạng thái-->
-    <div class="order-tabs" style="display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #eee;">
-      <button style="padding: 10px 20px; border: none; background: none; border-bottom: 2px solid #000; font-weight: bold; cursor: pointer;">Tất cả</button>
-      <button style="padding: 10px 20px; border: none; background: none; color: #666; cursor: pointer;">Đang xử lý</button>
-      <button style="padding: 10px 20px; border: none; background: none; color: #666; cursor: pointer;">Đã giao</button>
-      <button style="padding: 10px 20px; border: none; background: none; color: #666; cursor: pointer;">Đã hủy</button>
-    </div>
-    <!--Tab lịch sử-->
-    <table class="history-table">
-      <thead>
-        <tr>
-          <th>Mã đơn hàng</th>
-          <th>Sản phẩm</th>
-          <th>Ngày đặt</th>
-          <th>Tổng tiền</th>
-          <th>Trạng thái</th>
-          <th>Thao tác</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!--Đơn hàng 1-->
-        <tr>
-            <td><strong>#ELLA1001</strong></td>
-            <td>
-            <div style="display: flex; align-items: center; gap:10px">
-                <img src="image/Adidas Superstar.jpg" alt="Adidas" style="width: 45px; height: 45px; object-fit: cover; border-radius: 4px;">
-                 <span>Adidas Superstar</span>
-            </div>
-            </td>
-            <td>30/9/2026</td>
-            <td>2.130.000đ</td>
-            <td><span class="status-completed">Đã giao</span></td>
-            <td>
-                <a href="chitietmuahang.html" class="btn-detail">Xem chi tiết</a>
-                <a href="giohang.html" class="btn-rebuy">Mua lại</a>
-            </td>
-        </tr>
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th>Mã đơn hàng</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Ngày đặt</th>
+                    <th>Tổng tiền</th>
+                    <th>Trạng thái</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody id="danh-sach-don-hang">
+                <!-- Javascript sẽ điền dữ liệu vào đây -->
+            </tbody>
+        </table>
+    </main>
 
-        <!-- Đơn hàng 2 -->
-        <tr>
-            <td><strong>#ELLA1002</strong></td>
-            <td>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                <img src="image/asics1.jpg" alt="Asics" style="width: 45px; height: 45px; object-fit: cover; border-radius: 4px;">
-                <span>Asics Gel-Kayano</span>
-            </div>
-            </td>
-            <td>28/09/2026</td>
-          <td>1.550.000đ</td>
-          <td><span class="status-pending">Đang vận chuyển</span></td>
-          <td>
-            <a href="chitietmuahang.html" class="btn-detail">Xem chi tiết</a>
-            <a href="giohang.html" class="btn-rebuy">Mua lại</a>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2026 ELLA Store. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            var donMoi = JSON.parse(localStorage.getItem('donHangCuaKhach'));
+            var htmlContent = '';
+
+            /*1. Nếu có đơn mới từ trang thanh toán/giỏ hàng*/
+            if (donMoi) {
+                var tongTienMoi = (parseInt(donMoi.gia) || 2100000) + 30000;
+                htmlContent += `
+                    <tr>
+                        <td>#${donMoi.maDon || 'ELLA1001'}</td>
+                        <td>${donMoi.tenGiay || 'Giày Adidas Superstar'}</td>
+                        <td>30/09/2026</td>
+                        <td>${tongTienMoi.toLocaleString('vi-VN')}đ</td>
+                        <td><span style="color: green; font-weight: bold;">${donMoi.trangThai || 'Đã giao'}</span></td>
+                        <td><button onclick="xemChiTiet('${donMoi.maDon || 'ELLA1001'}')">Xem chi tiết</button></td>
+                    </tr>
+                `;
+            }
+
+            /*2. Các đơn hàng mẫu mặc định*/
+            htmlContent += `
+                <tr>
+                    <td>#ELLA1001</td>
+                    <td>Giày Adidas Superstar</td>
+                    <td>30/09/2026</td>
+                    <td>2.130.000đ</td>
+                    <td><span style="color: green; font-weight: bold;">Đã giao</span></td>
+                    <td><button onclick="xemChiTiet('ELLA1001')">Xem chi tiết</button></td>
+                </tr>
+                <tr>
+                    <td>#ELLA1002</td>
+                    <td>Giày Asics Gel-Kayano</td>
+                    <td>28/09/2026</td>
+                    <td>1.550.000đ</td>
+                    <td><span style="color: orange; font-weight: bold;">Đang vận chuyển</span></td>
+                    <td><button onclick="xemChiTiet('ELLA1002')">Xem chi tiết</button></td>
+                </tr>
+            `;
+
+            document.getElementById('danh-sach-don-hang').innerHTML = htmlContent;
+        };
+
+        function xemChiTiet(maDon) {
+            /*Lưu mã đơn được chọn và chuyển sang trang chi tiết*/
+            localStorage.setItem('maDonDangXem', maDon);
+            window.location.href = "chitietmuahang.html";
+        }
+    </script>
 </body>
 </html>
