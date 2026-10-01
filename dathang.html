@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
@@ -6,7 +6,7 @@
     <title>ELLA - Thông Tin Đặt Hàng</title>
     <link rel="stylesheet" href="./css/style.css">
     <style>
-        /* CSS Trang trí giao diện Form điền thông tin chuẩn ELLA Store */
+        /* CSS cho khung nhập thông tin đặt hàng */
         .checkout-container {
             max-width: 600px;
             margin: 50px auto;
@@ -17,7 +17,7 @@
             font-family: 'Segoe UI', Arial, sans-serif;
             box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-
+        /* Tiêu đề */
         .checkout-title {
             text-align: center;
             color: #111;
@@ -26,7 +26,7 @@
             letter-spacing: 1px;
             font-size: 24px;
         }
-
+        /* Khung hiển thị tổng tiền */
         .bill-summary {
             background-color: #f9f9f9;
             padding: 15px 20px;
@@ -37,34 +37,31 @@
             justify-content: space-between;
             align-items: center;
         }
-
+        /* Khoảng cách giữa các ô nhập */
         .form-group {
             margin-bottom: 18px;
         }
-
-            .form-group label {
-                display: block;
-                margin-bottom: 6px;
-                font-weight: 600;
-                color: #333;
-                font-size: 14px;
-            }
-
-            .form-group input {
-                width: 100%;
-                padding: 12px;
-                box-sizing: border-box;
-                border: 1px solid #ccc;
-                border-radius: 4px;
-                font-size: 14px;
-                transition: border-color 0.2s;
-            }
-
-                .form-group input:focus {
-                    border-color: #000;
-                    outline: none;
-                }
-
+        .form-group label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        /* Ô nhập thông tin */
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-group input:focus {
+            border-color: #000;
+            outline: none;
+        }
+        /* Nút xác nhận đặt hàng */
         .btn-order {
             background-color: #000000;
             color: #ffffff;
@@ -78,127 +75,90 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-top: 10px;
-            transition: background 0.2s;
         }
-
-            .btn-order:hover {
-                background-color: #333333;
-            }
+        .btn-order:hover {
+            background-color: #333333;
+        }
     </style>
 </head>
 <body>
-
+    <!-- Header -->
     <header class="container-custom-cart">
-        <div class="logo">
-            <h1><a href="Adidas.html" style="text-decoration: none; color: inherit;">ELLA</a></h1>
+        <span class="logo">
+            <h1><a href="index.html">ELLA</a></h1>
+        </span>
+        <div class="cart">
+            <a href="giohang.html">
+                <img src="image/cart.jpg" class="cart-icon">
+                <span class="cart-count"></span>
+            </a>
         </div>
-        <nav>
-            <a href="Adidas.html">Trang chủ</a>
-            <a href="giohang.html">Giỏ hàng</a>
-            <a href="lichsumuahang.html">Lịch sử mua hàng</a>
-        </nav>
     </header>
-
-    <!-- KHU VỰC FORM THÔNG TIN KHÁCH ĐẶT HÀNG (FRONTEND) -->
+    <!-- Menu -->
+    <nav class="main-menu container-custom">
+        <ul>
+            <li><a href="index.html">Trang chủ</a></li>
+            <li><a href="dangnhap.html">Tài khoản</a></li>
+        </ul>
+    </nav>
+    <!-- Form nhập thông tin khách hàng -->
     <div class="checkout-container">
         <h2 class="checkout-title">Thông Tin Nhận Hàng</h2>
-
-        <!-- Khung hiển thị tổng tiền tự động lấy từ bộ nhớ JavaScript Giỏ hàng sang -->
+        <!-- Hiển thị tổng tiền lấy từ giỏ hàng -->
         <div class="bill-summary">
             <span>Thành tiền cần thanh toán:</span>
             <strong style="color: #e74c3c; font-size: 20px;"><span id="tongTienBill">0</span>đ</strong>
         </div>
-
-        <!-- Các ô Input HTML để khách điền tên tuổi, địa chỉ -->
+        <!-- Nhập họ tên -->
         <div class="form-group">
             <label>Họ và tên khách hàng *</label>
             <input type="text" id="txtHoTen" placeholder="Nhập đầy đủ họ và tên người nhận">
         </div>
-
+        <!-- Nhập số điện thoại -->
         <div class="form-group">
             <label>Số điện thoại nhận hàng *</label>
             <input type="text" id="txtSoDienThoai" placeholder="Nhập số điện thoại liên hệ">
         </div>
-
+        <!-- Nhập email -->
         <div class="form-group">
             <label>Địa chỉ Email</label>
             <input type="email" id="txtEmail" placeholder="Nhập địa chỉ email (không bắt buộc)">
         </div>
-
+        <!-- Nhập địa chỉ -->
         <div class="form-group">
             <label>Địa chỉ giao hàng *</label>
             <input type="text" id="txtDiaChi" placeholder="Số nhà, tên đường, phường/xã, quận/huyện">
         </div>
-
-        <!-- NÚT BẤM KÍCH HOẠT LỆNH GỬI DỮ LIỆU ĐI SANG BACKEND -->
+        <!-- Nút xác nhận đặt hàng -->
         <button type="button" class="btn-order" onclick="xuLyGoiDonHangDat()">
             Xác Nhận Đặt Hàng & Thanh Toán
         </button>
     </div>
-
-    <!-- Đoạn JavaScript điều khiển dữ liệu kết nối thông suốt FE và BE -->
-    <script>// 1. [FE lệnh]: Tự động lục trong máy tính lấy số tiền giỏ hàng lưu từ trước ra hiển thị lên hóa đơn
-    const tongTienHienTai = parseFloat(localStorage.getItem("cartTotal")) || 0;
-    const gioHangGoc = JSON.parse(localStorage.getItem("cart")) || [];
-
-    // Gắn con số tiền thật vào ô chữ trên giao diện HTML
-    document.getElementById("tongTienBill").innerText = tongTienHienTai.toLocaleString("vi-VN");
-
-    // 2. [FE lệnh]: Hàm xử lý gom dữ liệu khách điền để bắn sang Backend C#
-    function xuLyGoiDonHangDat() {
-        const hoten = document.getElementById("txtHoTen").value.trim();
-        const sdt = document.getElementById("txtSoDienThoai").value.trim();
-        const email = document.getElementById("txtEmail").value.trim();
-        const diachi = document.getElementById("txtDiaChi").value.trim();
-
-        // Kiểm tra bảo mật form trống ở phía giao diện người dùng
-        if (!hoten || !sdt || !diachi) {
-            alert("Vui lòng điền đầy đủ các thông tin bắt buộc có dấu (*)!");
-            return;
-        }
-
-        // Tạo cấu trúc danh sách chi tiết các món hàng khớp với Model OrderItems của Backend
-        const danhSachItems = gioHangGoc.map(item => ({
-            ProductId: 1,
-            ProductName: item.name + " (Size: " + item.size + ")",
-            Quantity: item.quantity,
-            Price: item.price
-        }));
-
-        // Đóng gói tất cả thành đối tượng dữ liệu JSON thô gửi đi [soYHuZ]
-        const dataDonHang = {
-            FullName: hoten,
-            Phone: sdt,
-            Email: email,
-            ShippingAddress: diachi,
-            TotalAmount: tongTienHienTai,
-            OrderItems: danhSachItems.length > 0 ? danhSachItems : [{ ProductId: 1, ProductName: "Sản phẩm ELLA", Quantity: 1, Price: tongTienHienTai }]
-        };
-
-        // Bắn dữ liệu xuyên biên giới sang đường dẫn API của máy chủ Backend C# của bạn [IZSMSG]
-        // Chú ý: Hãy sửa lại số 44341 thành đúng số Port hiển thị khi bạn bấm Run dự án [p6Du2c].
-        fetch("http://localhost:44341/api/orders/checkout", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(dataDonHang)
-        })
-        .then(response => {
-            if (!response.ok) throw new Error("Mạng hoặc hệ thống Backend phản hồi lỗi!");
-            return response.json();
-        })
-        .then(result => {
-            if (result.success) {
-                alert("Đặt hàng thành công! Đơn hàng của bạn đã lưu trực tiếp vào cơ sở dữ liệu SQL Server.");
-                localStorage.removeItem("cart"); // Mua thành công xóa sạch giỏ hàng cũ trên máy khách đi
-                window.location.href = "lichsumuahang.html"; // FE ra lệnh tự chuyển màn hình sang xem lịch sử
-            } else {
-                alert("Hệ thống Backend báo lỗi từ chối: " + result.message);
+    <script>
+        // Lấy tổng tiền từ giỏ hàng
+        const tongTienHienTai = parseFloat(localStorage.getItem("cartTotal")) || 0;
+        // Hiển thị tổng tiền
+        document.getElementById("tongTienBill").innerText = tongTienHienTai.toLocaleString("vi-VN");
+        // Hàm xử lý khi người dùng bấm xác nhận đặt hàng
+        function xuLyGoiDonHangDat() {
+            // Lấy thông tin người dùng nhập
+            const hoten = document.getElementById("txtHoTen").value.trim();
+            const sdt = document.getElementById("txtSoDienThoai").value.trim();
+            const email = document.getElementById("txtEmail").value.trim();
+            const diachi = document.getElementById("txtDiaChi").value.trim();
+            // Kiểm tra thông tin bắt buộc
+            if (!hoten || !sdt || !diachi) {
+                alert("Vui lòng điền đầy đủ các thông tin bắt buộc có dấu (*)!");
+                return;
             }
-        })
-        .catch(error => {
-            console.error("Lỗi đường truyền:", error);
-            alert("Không thể kết nối đến hệ thống Backend xử lý đơn hàng! Hãy đảm bảo bạn đã bấm nút Play (F5) trong Visual Studio.");
-        });
-    }</script>
+            // Lưu thông tin để bill.html lấy lại
+            localStorage.setItem("hoTen", hoten);
+            localStorage.setItem("soDienThoai", sdt);
+            localStorage.setItem("email", email);
+            localStorage.setItem("diaChi", diachi);
+            // Chuyển sang trang bill
+            window.location.href = "bill.html";
+        }
+    </script>
 </body>
 </html>
