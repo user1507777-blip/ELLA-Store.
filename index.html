@@ -179,6 +179,35 @@
      menu.classList.toggle("mo");
 
     });
+           function timSanPham() {
+
+    // Lấy từ khóa người dùng nhập
+    let tuKhoa = document
+        .getElementById("timKiem")
+        .value
+        .toLowerCase()
+        .trim();
+
+    // Lấy tất cả sản phẩm
+    let sanPhams = document.querySelectorAll(".product-item");
+
+    // Duyệt từng sản phẩm
+    sanPhams.forEach(function(sanPham) {
+
+        // Lấy toàn bộ nội dung của sản phẩm
+        let noiDung = sanPham.innerText.toLowerCase();
+
+        // Nếu nội dung sản phẩm có chứa từ khóa
+        if (noiDung.includes(tuKhoa)) {
+
+            sanPham.style.display = "";
+
+        } else {
+
+            sanPham.style.display = "none";
+        }
+    });
+}
     </script>
 
     <footer class="footer">
