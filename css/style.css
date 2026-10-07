@@ -538,21 +538,34 @@ header {
 .menu-danh-muc a:hover {
     background-color: #f2f2f2;    /* Khi rê chuột vào link thì nền chuyển sang màu xám nhạt */
 }
-.footer {
+.footer-content {
     background-color: #222;
     color: #fff;
-    text-align: center;
     padding: 20px;
-    margin-top: 30px;
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 60px;
+    justify-content: center;
+    width: 100%;
+    max-width: 950px;
+    margin: 0 auto;
 }
-.footer a{
-    color: #fff;
-    text-decoration: none;
-    margin: 0 10px;
+.trai {
+    grid-column: 1;
 }
-.footer a:hover{
-text-decoration: underline;    
+.phai {
+    grid-column: 2;
+    margin-top: -110px;
 }
+.footer a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 10px;
+ }
+ .footer a:hover {
+            text-decoration: underline;
+  }
 
 /*Ghi chú đơn hàng*/
 .order-note-section {
